@@ -18,17 +18,31 @@
  * @package WordPress
  */
 
- if(isset($_ENV['CLEARDB_DATABASE_URL'])) {
-  $db = parse_url($_ENV['CLEARDB_DATABASE_URL']);
-  define('DB_NAME', trim($db['path'],'/'));
-  define('DB_USER', $db['use']);
-  define('DB_PASSWORD', $db['pass']);
-  define('DB_HOST', $db['host']);
-  define('DB_CHARSET', 'utf8');
-  define('DB_COLLATE', '');
-} else {
-  die("No Database credentials!");
-};
+ // S3 Config Info - read the S3 Access Keys from the config //
+define( 'AWS_ACCESS_KEY_ID', $_ENV["AWS_ACCESS_KEY_ID"]);
+define( 'AWS_SECRET_ACCESS_KEY', $_ENV["AWS_SECRET_ACCESS_KEY"]); 
+ 
+// ** ClearDB settings - from Heroku Environment ** //
+$db = parse_url($_ENV["CLEARDB_DATABASE_URL"]); 
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define('DB_NAME', trim($db["path"],"/"));
+
+/** MySQL database username */
+define('DB_USER', $db["user"]);
+
+/** MySQL database password */
+define('DB_PASSWORD', $db["pass"]);
+
+/** MySQL hostname */
+define('DB_HOST', $db["host"]);
+
+/** Database Charset to use in creating database tables. */
+define('DB_CHARSET', 'utf8');
+
+/** The Database Collate type. Don't change this if in doubt. */
+define('DB_COLLATE', '');
 
 /**#@+
  * Authentication unique keys and salts.
@@ -41,14 +55,14 @@
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define('AUTH_KEY',         $_ENV["AUTH_KEY"]);
+define('SECURE_AUTH_KEY',  $_ENV["SECURE_AUTH_KEY"]);
+define('LOGGED_IN_KEY',    $_ENV["LOGGED_IN_KEY"]);
+define('NONCE_KEY',        $_ENV["NONCE_KEY"]);
+define('AUTH_SALT',        $_ENV["AUTH_SALT"]);
+define('SECURE_AUTH_SALT', $_ENV["SECURE_AUTH_SALT"]);
+define('LOGGED_IN_SALT',   $_ENV["LOGGED_IN_SALT"]);
+define('NONCE_SALT',       $_ENV["NONCE_SALT"]);
 
 /**#@-*/
 
