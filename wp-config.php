@@ -19,7 +19,11 @@
  */
 
  // S3 Config Info - read the S3 Access Keys from the config //
- 
+ define( 'AS3CF_SETTINGS', serialize( array(
+	'provider' => 'aws',
+	'use-server-roles' => true,
+) ) );
+
 // ** ClearDB settings - from Heroku Environment ** //
 $db = parse_url($_ENV["CLEARDB_DATABASE_URL"]); 
 
