@@ -18,7 +18,11 @@
  * @package WordPress
  */
 
-
+//  define( 'AS3CF_SETTINGS', serialize( array(
+// 	'provider' => 'aws',
+// 	'access-key-id' => $_ENV["ACCESS-KEY-ID"],
+// 	'secret-access-key' => $_ENV["SECRET-ACCESS-KEY"],
+// ) ) );
 
 // ** ClearDB settings - from Heroku Environment ** //
 $db = parse_url($_ENV["CLEARDB_DATABASE_URL"]); 
